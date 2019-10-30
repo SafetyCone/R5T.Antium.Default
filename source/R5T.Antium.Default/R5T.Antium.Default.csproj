@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\R5T.Gepidia.Local\source\R5T.Gepidia.Local\R5T.Gepidia.Local.csproj" />
     <ProjectReference Include="..\..\..\R5T.Gepidia.Remote\source\R5T.Gepidia.Remote\R5T.Gepidia.Remote.csproj" />
     <ProjectReference Include="..\..\..\R5T.Jutland.Base\source\R5T.Jutland.Base\R5T.Jutland.Base.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Norsica.Base\source\R5T.Norsica.Base\R5T.Norsica.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.Pompeii.Base\source\R5T.Pompeii.Base\R5T.Pompeii.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.Suebia.Base\source\R5T.Suebia.Base\R5T.Suebia.Base.csproj" />
   </ItemGroup>

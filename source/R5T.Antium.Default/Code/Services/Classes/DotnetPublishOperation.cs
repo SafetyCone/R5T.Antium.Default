@@ -10,16 +10,16 @@ namespace R5T.Antium.Default
     {
         private IEntryPointProjectFilePathProvider EntryPointProjectFilePathProvider { get; }
         private IEntryPointProjectBuildOutputPublishDirectoryPathProvider EntryPointProjectBuildOutputPublishDirectoryPathProvider { get; }
-        private IDotnetCommandLineOperator DotnetCommandLineOperator { get; }
+        private IDotnetOperator DotnetOperator { get; }
 
 
         public DotnetPublishOperation(
             IEntryPointProjectFilePathProvider entryPointProjectFilePathProvider,
-            IDotnetCommandLineOperator dotnetCommandLineOperator,
+            IDotnetOperator dotnetCommandLineOperator,
             IEntryPointProjectBuildOutputPublishDirectoryPathProvider entryPointProjectBuildOutputPublishDirectoryPathProvider)
         {
             this.EntryPointProjectFilePathProvider = entryPointProjectFilePathProvider;
-            this.DotnetCommandLineOperator = dotnetCommandLineOperator;
+            this.DotnetOperator = dotnetCommandLineOperator;
             this.EntryPointProjectBuildOutputPublishDirectoryPathProvider = entryPointProjectBuildOutputPublishDirectoryPathProvider;
         }
 
@@ -29,7 +29,8 @@ namespace R5T.Antium.Default
 
             var publishDirectoryPath = this.EntryPointProjectBuildOutputPublishDirectoryPathProvider.GetEntryPointProjectBuildOutputPublishDirectoryPath();
 
-            this.DotnetCommandLineOperator.PublishApp(projectFilePath, publishDirectoryPath);
+            //this.DotnetOperator.Publish(projectFilePath, publishDirectoryPath);
+            this.DotnetOperator.Publish(projectFilePath, publishDirectoryPath, "Debug");
         }
     }
 }

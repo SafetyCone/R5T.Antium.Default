@@ -11,12 +11,13 @@ namespace R5T.Antium.Default
     public class DefaultDeploymentSourceFileSystemSiteProvider : IDeploymentSourceFileSystemSiteProvider
     {
         private IProjectBuildOutputBinariesDirectoryPathProvider ProjectOutputBinariesDirectoryPathProvider { get; }
-        private LocalFileSystemOperator LocalFileSystemOperator { get; }
+        private ILocalFileSystemOperator LocalFileSystemOperator { get; }
         private IStringlyTypedPathOperator StringlyTypedPathOperator { get; }
 
 
-        public DefaultDeploymentSourceFileSystemSiteProvider(IProjectBuildOutputBinariesDirectoryPathProvider projectOutputBinariesDirectoryPathProvider,
-            LocalFileSystemOperator localFileSystemOperator,
+        public DefaultDeploymentSourceFileSystemSiteProvider(
+            IProjectBuildOutputBinariesDirectoryPathProvider projectOutputBinariesDirectoryPathProvider,
+            ILocalFileSystemOperator localFileSystemOperator,
             IStringlyTypedPathOperator stringlyTypedPathOperator)
         {
             this.ProjectOutputBinariesDirectoryPathProvider = projectOutputBinariesDirectoryPathProvider;

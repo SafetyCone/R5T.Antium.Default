@@ -7,19 +7,21 @@ namespace R5T.Antium.Default
 {
     public class RemoteDeploymentSerializationAwsEc2ServerHostFriendlyNameProvider : IAwsEc2ServerHostFriendlyNameProvider
     {
-        private RemoteDeploymentSecretsSerialization RemoteDeploymentSecretsSerialization { get; }
+        private IRemoteDeploymentSecretsSerializationProvider RemoteDeploymentSecretsSerializationProvider { get; }
 
 
         public RemoteDeploymentSerializationAwsEc2ServerHostFriendlyNameProvider(
-            RemoteDeploymentSecretsSerialization remoteDeploymentSecretsSerialization)
+            IRemoteDeploymentSecretsSerializationProvider remoteDeploymentSecretsSerializationProvider)
         {
-            this.RemoteDeploymentSecretsSerialization = remoteDeploymentSecretsSerialization;
+            this.RemoteDeploymentSecretsSerializationProvider = remoteDeploymentSecretsSerializationProvider;
         }
 
 
         public string GetHostFriendlyName()
         {
-            var output = this.RemoteDeploymentSecretsSerialization.HostConnectionFriendlyName;
+            var remoteDeploymentSecretsSerialization = this.RemoteDeploymentSecretsSerializationProvider.GetRemoteDeploymentSecretsSerialization();
+
+            var output = remoteDeploymentSecretsSerialization.HostConnectionFriendlyName;
             return output;
         }
     }

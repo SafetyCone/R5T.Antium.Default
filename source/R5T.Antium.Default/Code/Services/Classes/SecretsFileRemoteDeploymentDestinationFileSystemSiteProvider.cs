@@ -9,23 +9,26 @@ namespace R5T.Antium.Default
 {
     public class SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider : IDeploymentDestinationFileSystemSiteProvider
     {
-        private RemoteDeploymentSecretsSerialization RemoteDeploymentSecretsSerialization { get; }
-        private RemoteFileSystemOperator RemoteFileSystemOperator { get; }
+        private IRemoteDeploymentSecretsSerializationProvider RemoteDeploymentSecretsSerializationProvider { get; }
+        private IRemoteFileSystemOperator RemoteFileSystemOperator { get; }
         private IStringlyTypedPathOperator StringlyTypedPathOperator { get; }
 
 
-        public SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider(RemoteDeploymentSecretsSerialization remoteDeploymentSecretsSerialization,
-            RemoteFileSystemOperator remoteFileSystemOperator,
+        public SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider(
+            IRemoteDeploymentSecretsSerializationProvider remoteDeploymentSecretsSerializationProvider,
+            IRemoteFileSystemOperator remoteFileSystemOperator,
             IStringlyTypedPathOperator stringlyTypedPathOperator)
         {
-            this.RemoteDeploymentSecretsSerialization = remoteDeploymentSecretsSerialization;
+            this.RemoteDeploymentSecretsSerializationProvider = remoteDeploymentSecretsSerializationProvider;
             this.RemoteFileSystemOperator = remoteFileSystemOperator;
             this.StringlyTypedPathOperator = stringlyTypedPathOperator;
         }
 
         public FileSystemSite GetDeploymentDestinationFileSystemSite()
         {
-            var ensuredDirectoryPath = this.StringlyTypedPathOperator.EnsureDirectoryPathIsDirectoryIndicated(this.RemoteDeploymentSecretsSerialization.DirectoryPath);
+            var remoteDeploymentSecretsSerialization = this.RemoteDeploymentSecretsSerializationProvider.GetRemoteDeploymentSecretsSerialization();
+
+            var ensuredDirectoryPath = this.StringlyTypedPathOperator.EnsureDirectoryPathIsDirectoryIndicated(remoteDeploymentSecretsSerialization.DirectoryPath);
 
             var remoteFileSystemSite = new FileSystemSite(ensuredDirectoryPath, this.RemoteFileSystemOperator);
             return remoteFileSystemSite;

@@ -6,14 +6,14 @@ using R5T.Suebia;
 
 namespace R5T.Antium.Default
 {
-    public class DefaultRemoteDeployementSecretsSerializationProvider : IRemoteDeploymentSecretsSerializationProvider
+    public class DefaultLocalDeploymentSecretsSerializationProvider : ILocalDeploymentSecretsSerializationProvider
     {
         private IDeploymentDestinationSecretsFileNameProvider DeploymentDestinationSecretsFileNameProvider { get; }
         private ISecretsFilePathProvider SecretsFilePathProvider { get; }
         private IJsonFileSerializationOperator JsonFileSerializationOperator { get; }
 
 
-        public DefaultRemoteDeployementSecretsSerializationProvider(
+        public DefaultLocalDeploymentSecretsSerializationProvider(
             IDeploymentDestinationSecretsFileNameProvider deploymentDestinationSecretsFileNameProvider,
             ISecretsFilePathProvider secretsFilePathProvider,
             IJsonFileSerializationOperator jsonFileSerializationOperator)
@@ -23,14 +23,15 @@ namespace R5T.Antium.Default
             this.JsonFileSerializationOperator = jsonFileSerializationOperator;
         }
 
-        public RemoteDeploymentSecretsSerialization GetRemoteDeploymentSecretsSerialization()
+        public LocalDeploymentSecretsSerialization GetLocalDeploymentSecretsSerialization()
         {
             var deploymentDestinationSecretsFileName = this.DeploymentDestinationSecretsFileNameProvider.GetDeploymentDestinationSecretsFileName();
 
-            var deploymentDestinatinoSecretsFilePath = this.SecretsFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
+            var deploymentDestinationSecretsFilePath = this.SecretsFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
 
-            var serialization = this.JsonFileSerializationOperator.Deserialize<RemoteDeploymentSecretsSerialization>(deploymentDestinatinoSecretsFilePath);
-            return serialization;
+            // Load the type from JSON and get the local directory path.
+            var localDeploymentSecretsSerialization = this.JsonFileSerializationOperator.Deserialize<LocalDeploymentSecretsSerialization>(deploymentDestinationSecretsFilePath);
+            return localDeploymentSecretsSerialization;
         }
     }
 }

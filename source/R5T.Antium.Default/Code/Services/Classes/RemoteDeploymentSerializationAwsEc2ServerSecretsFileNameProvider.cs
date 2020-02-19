@@ -7,18 +7,20 @@ namespace R5T.Antium.Default
 {
     public class RemoteDeploymentSerializationAwsEc2ServerSecretsFileNameProvider : IAwsEc2ServerSecretsFileNameProvider
     {
-        private RemoteDeploymentSecretsSerialization RemoteDeploymentSecretsSerialization { get; }
+        private IRemoteDeploymentSecretsSerializationProvider RemoteDeploymentSecretsSerializationProvider { get; }
 
 
         public RemoteDeploymentSerializationAwsEc2ServerSecretsFileNameProvider(
-            RemoteDeploymentSecretsSerialization remoteDeploymentSecretsSerialization)
+            IRemoteDeploymentSecretsSerializationProvider remoteDeploymentSecretsSerializationProvider)
         {
-            this.RemoteDeploymentSecretsSerialization = remoteDeploymentSecretsSerialization;
+            this.RemoteDeploymentSecretsSerializationProvider = remoteDeploymentSecretsSerializationProvider;
         }
 
         public string GetAwsEc2ServerSecretsFileName()
         {
-            var output = this.RemoteDeploymentSecretsSerialization.AwsEC2ServerSecretsFilename;
+            var remoteDeploymentSecretsSerialization = this.RemoteDeploymentSecretsSerializationProvider.GetRemoteDeploymentSecretsSerialization();
+
+            var output = remoteDeploymentSecretsSerialization.AwsEC2ServerSecretsFilename;
             return output;
         }
     }

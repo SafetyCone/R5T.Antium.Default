@@ -6,14 +6,14 @@ using R5T.Pompeii;
 
 namespace R5T.Antium.Default
 {
-    public class DotnetPublishOperation : IPublishOperation
+    public class DotnetPublicationOperator : IPublicationOperator
     {
         private IEntryPointProjectFilePathProvider EntryPointProjectFilePathProvider { get; }
         private IEntryPointProjectBuildOutputPublishDirectoryPathProvider EntryPointProjectBuildOutputPublishDirectoryPathProvider { get; }
         private IDotnetOperator DotnetOperator { get; }
 
 
-        public DotnetPublishOperation(
+        public DotnetPublicationOperator(
             IEntryPointProjectFilePathProvider entryPointProjectFilePathProvider,
             IDotnetOperator dotnetCommandLineOperator,
             IEntryPointProjectBuildOutputPublishDirectoryPathProvider entryPointProjectBuildOutputPublishDirectoryPathProvider)
@@ -23,7 +23,7 @@ namespace R5T.Antium.Default
             this.EntryPointProjectBuildOutputPublishDirectoryPathProvider = entryPointProjectBuildOutputPublishDirectoryPathProvider;
         }
 
-        public void Execute()
+        public void Publish()
         {
             var projectFilePath = this.EntryPointProjectFilePathProvider.GetEntryPointProjectFilePath();
 

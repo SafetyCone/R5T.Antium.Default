@@ -10,7 +10,7 @@ namespace R5T.Antium.Default
 {
     public class DefaultDeploymentSourceFileSystemSiteProvider : IDeploymentSourceFileSystemSiteProvider
     {
-        private IProjectBuildOutputBinariesDirectoryPathProvider ProjectOutputBinariesDirectoryPathProvider { get; }
+        private IProjectBuildOutputBinariesDirectoryPathProvider ProjectBuildOutputBinariesDirectoryPathProvider { get; }
         private ILocalFileSystemOperator LocalFileSystemOperator { get; }
         private IStringlyTypedPathOperator StringlyTypedPathOperator { get; }
 
@@ -20,14 +20,14 @@ namespace R5T.Antium.Default
             ILocalFileSystemOperator localFileSystemOperator,
             IStringlyTypedPathOperator stringlyTypedPathOperator)
         {
-            this.ProjectOutputBinariesDirectoryPathProvider = projectOutputBinariesDirectoryPathProvider;
+            this.ProjectBuildOutputBinariesDirectoryPathProvider = projectOutputBinariesDirectoryPathProvider;
             this.LocalFileSystemOperator = localFileSystemOperator;
             this.StringlyTypedPathOperator = stringlyTypedPathOperator;
         }
 
         public FileSystemSite GetDeploymentSourceFileSystemSite()
         {
-            var projectOutputBinariesDirectoryPath = this.ProjectOutputBinariesDirectoryPathProvider.GetProjectBuildOutputBinariesDirectoryPath();
+            var projectOutputBinariesDirectoryPath = this.ProjectBuildOutputBinariesDirectoryPathProvider.GetProjectBuildOutputBinariesDirectoryPath();
             var ensuredProjectOutputBinariesDirectoryPath = this.StringlyTypedPathOperator.EnsureDirectoryPathIsDirectoryIndicated(projectOutputBinariesDirectoryPath);
 
             var projectOutputBinariesLocalFileSystemSite = new FileSystemSite(ensuredProjectOutputBinariesDirectoryPath, this.LocalFileSystemOperator);

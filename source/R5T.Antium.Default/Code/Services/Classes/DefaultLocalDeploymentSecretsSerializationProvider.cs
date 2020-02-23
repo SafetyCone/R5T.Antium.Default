@@ -9,17 +9,17 @@ namespace R5T.Antium.Default
     public class DefaultLocalDeploymentSecretsSerializationProvider : ILocalDeploymentSecretsSerializationProvider
     {
         private IDeploymentDestinationSecretsFileNameProvider DeploymentDestinationSecretsFileNameProvider { get; }
-        private ISecretsFilePathProvider SecretsFilePathProvider { get; }
+        private ISecretsDirectoryFilePathProvider SecretsDirectoryFilePathProvider { get; }
         private IJsonFileSerializationOperator JsonFileSerializationOperator { get; }
 
 
         public DefaultLocalDeploymentSecretsSerializationProvider(
             IDeploymentDestinationSecretsFileNameProvider deploymentDestinationSecretsFileNameProvider,
-            ISecretsFilePathProvider secretsFilePathProvider,
+            ISecretsDirectoryFilePathProvider secretsDirectoryFilePathProvider,
             IJsonFileSerializationOperator jsonFileSerializationOperator)
         {
             this.DeploymentDestinationSecretsFileNameProvider = deploymentDestinationSecretsFileNameProvider;
-            this.SecretsFilePathProvider = secretsFilePathProvider;
+            this.SecretsDirectoryFilePathProvider = secretsDirectoryFilePathProvider;
             this.JsonFileSerializationOperator = jsonFileSerializationOperator;
         }
 
@@ -27,7 +27,7 @@ namespace R5T.Antium.Default
         {
             var deploymentDestinationSecretsFileName = this.DeploymentDestinationSecretsFileNameProvider.GetDeploymentDestinationSecretsFileName();
 
-            var deploymentDestinationSecretsFilePath = this.SecretsFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
+            var deploymentDestinationSecretsFilePath = this.SecretsDirectoryFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
 
             // Load the type from JSON and get the local directory path.
             var localDeploymentSecretsSerialization = this.JsonFileSerializationOperator.Deserialize<LocalDeploymentSecretsSerialization>(deploymentDestinationSecretsFilePath);

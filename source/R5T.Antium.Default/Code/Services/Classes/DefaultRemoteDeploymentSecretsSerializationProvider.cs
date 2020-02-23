@@ -9,17 +9,17 @@ namespace R5T.Antium.Default
     public class DefaultRemoteDeploymentSecretsSerializationProvider : IRemoteDeploymentSecretsSerializationProvider
     {
         private IDeploymentDestinationSecretsFileNameProvider DeploymentDestinationSecretsFileNameProvider { get; }
-        private ISecretsFilePathProvider SecretsFilePathProvider { get; }
+        private ISecretsDirectoryFilePathProvider SecretsDirectoryFilePathProvider { get; }
         private IJsonFileSerializationOperator JsonFileSerializationOperator { get; }
 
 
         public DefaultRemoteDeploymentSecretsSerializationProvider(
             IDeploymentDestinationSecretsFileNameProvider deploymentDestinationSecretsFileNameProvider,
-            ISecretsFilePathProvider secretsFilePathProvider,
+            ISecretsDirectoryFilePathProvider secretsDirectoryFilePathProvider,
             IJsonFileSerializationOperator jsonFileSerializationOperator)
         {
             this.DeploymentDestinationSecretsFileNameProvider = deploymentDestinationSecretsFileNameProvider;
-            this.SecretsFilePathProvider = secretsFilePathProvider;
+            this.SecretsDirectoryFilePathProvider = secretsDirectoryFilePathProvider;
             this.JsonFileSerializationOperator = jsonFileSerializationOperator;
         }
 
@@ -27,7 +27,7 @@ namespace R5T.Antium.Default
         {
             var deploymentDestinationSecretsFileName = this.DeploymentDestinationSecretsFileNameProvider.GetDeploymentDestinationSecretsFileName();
 
-            var deploymentDestinatinoSecretsFilePath = this.SecretsFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
+            var deploymentDestinatinoSecretsFilePath = this.SecretsDirectoryFilePathProvider.GetSecretsFilePath(deploymentDestinationSecretsFileName);
 
             var serialization = this.JsonFileSerializationOperator.Deserialize<RemoteDeploymentSecretsSerialization>(deploymentDestinatinoSecretsFilePath);
             return serialization;

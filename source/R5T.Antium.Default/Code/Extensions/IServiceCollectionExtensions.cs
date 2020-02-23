@@ -196,13 +196,13 @@ namespace R5T.Antium.Default
         /// </summary>
         public static IServiceCollection AddDefaultRemoteDeploymentSecretsSerializationProvider(this IServiceCollection services,
             ServiceAction<IDeploymentDestinationSecretsFileNameProvider> addDeploymentDestinationSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator)
         {
             services
                 .AddSingleton<IRemoteDeploymentSecretsSerializationProvider, DefaultRemoteDeploymentSecretsSerializationProvider>()
                 .RunServiceAction(addDeploymentDestinationSecretsFileNameProvider)
-                .RunServiceAction(addSecretsFilePathProvider)
+                .RunServiceAction(addSecretsDirectoryFilePathProvider)
                 .RunServiceAction(addJsonFileSerializationOperator)
                 ;
 
@@ -214,12 +214,12 @@ namespace R5T.Antium.Default
         /// </summary>
         public static ServiceAction<IRemoteDeploymentSecretsSerializationProvider> AddDefaultRemoteDeploymentSecretsSerializationProviderAction(this IServiceCollection services,
             ServiceAction<IDeploymentDestinationSecretsFileNameProvider> addDeploymentDestinationSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator)
         {
             var serviceAction = new ServiceAction<IRemoteDeploymentSecretsSerializationProvider>(() => services.AddDefaultRemoteDeploymentSecretsSerializationProvider(
                 addDeploymentDestinationSecretsFileNameProvider,
-                addSecretsFilePathProvider,
+                addSecretsDirectoryFilePathProvider,
                 addJsonFileSerializationOperator));
             return serviceAction;
         }
@@ -231,13 +231,13 @@ namespace R5T.Antium.Default
         /// </summary>
         public static IServiceCollection AddDefaultLocalDeploymentSecretsSerializationProvider(this IServiceCollection services,
             ServiceAction<IDeploymentDestinationSecretsFileNameProvider> addDeploymentDestinationSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator)
         {
             services
                 .AddSingleton<ILocalDeploymentSecretsSerializationProvider, DefaultLocalDeploymentSecretsSerializationProvider>()
                 .RunServiceAction(addDeploymentDestinationSecretsFileNameProvider)
-                .RunServiceAction(addSecretsFilePathProvider)
+                .RunServiceAction(addSecretsDirectoryFilePathProvider)
                 .RunServiceAction(addJsonFileSerializationOperator)
                 ;
 
@@ -249,12 +249,12 @@ namespace R5T.Antium.Default
         /// </summary>
         public static ServiceAction<ILocalDeploymentSecretsSerializationProvider> AddDefaultLocalDeploymentSecretsSerializationProviderAction(this IServiceCollection services,
             ServiceAction<IDeploymentDestinationSecretsFileNameProvider> addDeploymentDestinationSecretsFileNameProvider,
-            ServiceAction<ISecretsFilePathProvider> addSecretsFilePathProvider,
+            ServiceAction<ISecretsDirectoryFilePathProvider> addSecretsDirectoryFilePathProvider,
             ServiceAction<IJsonFileSerializationOperator> addJsonFileSerializationOperator)
         {
             var serviceAction = new ServiceAction<ILocalDeploymentSecretsSerializationProvider>(() => services.AddDefaultLocalDeploymentSecretsSerializationProvider(
                 addDeploymentDestinationSecretsFileNameProvider,
-                addSecretsFilePathProvider,
+                addSecretsDirectoryFilePathProvider,
                 addJsonFileSerializationOperator));
             return serviceAction;
         }

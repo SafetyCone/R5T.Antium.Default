@@ -262,15 +262,15 @@ namespace R5T.Antium.Default
 
 
         /// <summary>
-        /// Adds the <see cref="DotnetPublicationOperator"/> implementation of <see cref="IPublicationOperator"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="DotnetPublishAction"/> implementation of <see cref="IPublishAction"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static IServiceCollection AddDefaultDotnetPublicationOperator(this IServiceCollection services,
+        public static IServiceCollection AddDefaultDotnetPublishAction(this IServiceCollection services,
             ServiceAction<IEntryPointProjectFilePathProvider> addEntryPointProjectFilePathProvider,
             ServiceAction<IEntryPointProjectBuildOutputPublishDirectoryPathProvider> addEntryPointProjectBuildOutputPublishDirectoryPathProvider,
             ServiceAction<IDotnetOperator> addDotnetOperator)
         {
             services
-                .AddSingleton<IPublicationOperator, DotnetPublicationOperator>()
+                .AddSingleton<IPublishAction, DotnetPublishAction>()
                 .RunServiceAction(addEntryPointProjectFilePathProvider)
                 .RunServiceAction(addEntryPointProjectBuildOutputPublishDirectoryPathProvider)
                 .RunServiceAction(addDotnetOperator)
@@ -280,14 +280,14 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="DotnetPublicationOperator"/> implementation of <see cref="IPublicationOperator"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="DotnetPublishAction"/> implementation of <see cref="IPublishAction"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IPublicationOperator> AddDefaultDotnetPublicationOperatorAction(this IServiceCollection services,
+        public static ServiceAction<IPublishAction> AddDefaultDotnetPublishActionAction(this IServiceCollection services,
             ServiceAction<IEntryPointProjectFilePathProvider> addEntryPointProjectFilePathProvider,
             ServiceAction<IEntryPointProjectBuildOutputPublishDirectoryPathProvider> addEntryPointProjectBuildOutputPublishDirectoryPathProvider,
             ServiceAction<IDotnetOperator> addDotnetOperator)
         {
-            var serviceAction = new ServiceAction<IPublicationOperator>(() => services.AddDefaultDotnetPublicationOperator(
+            var serviceAction = new ServiceAction<IPublishAction>(() => services.AddDefaultDotnetPublishAction(
                 addEntryPointProjectFilePathProvider,
                 addEntryPointProjectBuildOutputPublishDirectoryPathProvider,
                 addDotnetOperator));

@@ -22,6 +22,7 @@ namespace R5T.Antium.Default
             ILocalFileSystemOperator localFileSystemOperator,
             IStringlyTypedPathOperator stringlyTypedPathOperator)
         {
+            this.LocalDeploymentSecretsSerializationProvider = localDeploymentSecretsSerializationProvider;
             this.LocalFileSystemOperator = localFileSystemOperator;
             this.StringlyTypedPathOperator = stringlyTypedPathOperator;
         }

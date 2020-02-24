@@ -8,9 +8,9 @@ using R5T.Lombardy;
 namespace R5T.Antium.Default
 {
     /// <summary>
-    /// Gets local deployment destination file-system site details from a secrets file.
+    /// Provides a local deployment destination file system site using the <see cref="LocalDeploymentSecretsSerialization.DirectoryPath"/> value.
     /// </summary>
-    public class SecretsFileLocalDeploymentDestinationFileSystemSiteProvider : IDeploymentDestinationFileSystemSiteProvider
+    public class SecretsFileLocalDeploymentDestinationFileSystemSiteProvider : IDeploymentDestination_FileSystemSiteProvider
     {
         private ILocalDeploymentSecretsSerializationProvider LocalDeploymentSecretsSerializationProvider { get; }
         private ILocalFileSystemOperator LocalFileSystemOperator { get; }

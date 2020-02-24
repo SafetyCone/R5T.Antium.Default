@@ -18,7 +18,7 @@ namespace R5T.Antium.Default
     public static class IServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds the <see cref="DefaultDeploymentSourceFileSystemSiteProvider"/> implementation of <see cref="IDeploymentSourceFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="DefaultDeploymentSourceFileSystemSiteProvider"/> implementation of <see cref="IDeploymentSource_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceCollection AddDefaultDeploymentSourceFileSystemSiteProvider(this IServiceCollection services,
             ServiceAction<IProjectBuildOutputBinariesDirectoryPathProvider> addProjectBuildOutputBinariesDirectoryPathProvider,
@@ -26,7 +26,7 @@ namespace R5T.Antium.Default
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
             services
-                .AddSingleton<IDeploymentSourceFileSystemSiteProvider, DefaultDeploymentSourceFileSystemSiteProvider>()
+                .AddSingleton<IDeploymentSource_FileSystemSiteProvider, DefaultDeploymentSourceFileSystemSiteProvider>()
                 .RunServiceAction(addProjectBuildOutputBinariesDirectoryPathProvider)
                 .RunServiceAction(addLocalFileSystemOperator)
                 .RunServiceAction(addStringlyTypedPathOperator)
@@ -36,14 +36,14 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="DefaultDeploymentSourceFileSystemSiteProvider"/> implementation of <see cref="IDeploymentSourceFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="DefaultDeploymentSourceFileSystemSiteProvider"/> implementation of <see cref="IDeploymentSource_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IDeploymentSourceFileSystemSiteProvider> AddDefaultDeploymentSourceFileSystemSiteProviderAction(this IServiceCollection services,
+        public static ServiceAction<IDeploymentSource_FileSystemSiteProvider> AddDefaultDeploymentSourceFileSystemSiteProviderAction(this IServiceCollection services,
             ServiceAction<IProjectBuildOutputBinariesDirectoryPathProvider> addProjectBuildOutputBinariesDirectoryPathProvider,
             ServiceAction<ILocalFileSystemOperator> addLocalFileSystemOperator,
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
-            var serviceAction = new ServiceAction<IDeploymentSourceFileSystemSiteProvider>(() => services.AddDefaultDeploymentSourceFileSystemSiteProvider(
+            var serviceAction = new ServiceAction<IDeploymentSource_FileSystemSiteProvider>(() => services.AddDefaultDeploymentSourceFileSystemSiteProvider(
                 addProjectBuildOutputBinariesDirectoryPathProvider,
                 addLocalFileSystemOperator,
                 addStringlyTypedPathOperator));
@@ -51,7 +51,7 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestinationFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestination_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceCollection AddSecretsFileRemoteDeploymentDestinationFileSystemSiteProvider(this IServiceCollection services,
             ServiceAction<IRemoteDeploymentSecretsSerializationProvider> addRemoteDeploymentSecretsSerializationProvider,
@@ -59,7 +59,7 @@ namespace R5T.Antium.Default
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
             services
-                .AddSingleton<IDeploymentDestinationFileSystemSiteProvider, SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider>()
+                .AddSingleton<IDeploymentDestination_FileSystemSiteProvider, SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider>()
                 .RunServiceAction(addRemoteDeploymentSecretsSerializationProvider)
                 .RunServiceAction(addRemoteFileSystemOperator)
                 .RunServiceAction(addStringlyTypedPathOperator)
@@ -69,14 +69,14 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestinationFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestination_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IDeploymentDestinationFileSystemSiteProvider> AddSecretsFileRemoteDeploymentDestinationFileSystemSiteProviderAction(this IServiceCollection services,
+        public static ServiceAction<IDeploymentDestination_FileSystemSiteProvider> AddSecretsFileRemoteDeploymentDestinationFileSystemSiteProviderAction(this IServiceCollection services,
             ServiceAction<IRemoteDeploymentSecretsSerializationProvider> addRemoteDeploymentSecretsSerializationProvider,
             ServiceAction<IRemoteFileSystemOperator> addRemoteFileSystemOperator,
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
-            var serviceAction = new ServiceAction<IDeploymentDestinationFileSystemSiteProvider>(() => services.AddSecretsFileRemoteDeploymentDestinationFileSystemSiteProvider(
+            var serviceAction = new ServiceAction<IDeploymentDestination_FileSystemSiteProvider>(() => services.AddSecretsFileRemoteDeploymentDestinationFileSystemSiteProvider(
                 addRemoteDeploymentSecretsSerializationProvider,
                 addRemoteFileSystemOperator,
                 addStringlyTypedPathOperator));
@@ -84,7 +84,7 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="SecretsFileLocalDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestinationFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="SecretsFileLocalDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestination_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceCollection AddSecretsFileLocalDeploymentDestinationFileSystemSiteProvider(this IServiceCollection services,
             ServiceAction<ILocalDeploymentSecretsSerializationProvider> addLocalDeploymentSecretsSerializationProvider,
@@ -92,7 +92,7 @@ namespace R5T.Antium.Default
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
             services
-                .AddSingleton<IDeploymentDestinationFileSystemSiteProvider, SecretsFileLocalDeploymentDestinationFileSystemSiteProvider>()
+                .AddSingleton<IDeploymentDestination_FileSystemSiteProvider, SecretsFileLocalDeploymentDestinationFileSystemSiteProvider>()
                 .RunServiceAction(addLocalDeploymentSecretsSerializationProvider)
                 .RunServiceAction(addLocalFileSystemOperator)
                 .RunServiceAction(addStringlyTypedPathOperator)
@@ -102,14 +102,14 @@ namespace R5T.Antium.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="SecretsFileLocalDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestinationFileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="SecretsFileLocalDeploymentDestinationFileSystemSiteProvider"/> implementation of <see cref="IDeploymentDestination_FileSystemSiteProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static ServiceAction<IDeploymentDestinationFileSystemSiteProvider> AddSecretsFileLocalDeploymentDestinationFileSystemSiteProviderAction(this IServiceCollection services,
+        public static ServiceAction<IDeploymentDestination_FileSystemSiteProvider> AddSecretsFileLocalDeploymentDestinationFileSystemSiteProviderAction(this IServiceCollection services,
             ServiceAction<ILocalDeploymentSecretsSerializationProvider> addLocalDeploymentSecretsSerializationProvider,
             ServiceAction<ILocalFileSystemOperator> addLocalFileSystemOperator,
             ServiceAction<IStringlyTypedPathOperator> addStringlyTypedPathOperator)
         {
-            var serviceAction = new ServiceAction<IDeploymentDestinationFileSystemSiteProvider>(() => services.AddSecretsFileLocalDeploymentDestinationFileSystemSiteProvider(
+            var serviceAction = new ServiceAction<IDeploymentDestination_FileSystemSiteProvider>(() => services.AddSecretsFileLocalDeploymentDestinationFileSystemSiteProvider(
                 addLocalDeploymentSecretsSerializationProvider,
                 addLocalFileSystemOperator,
                 addStringlyTypedPathOperator));

@@ -8,7 +8,7 @@ using R5T.Pompeii;
 
 namespace R5T.Antium.Default
 {
-    public class DefaultDeploymentSourceFileSystemSiteProvider : IDeploymentSourceFileSystemSiteProvider
+    public class DefaultDeploymentSourceFileSystemSiteProvider : IDeploymentSource_FileSystemSiteProvider
     {
         private IProjectBuildOutputBinariesDirectoryPathProvider ProjectBuildOutputBinariesDirectoryPathProvider { get; }
         private ILocalFileSystemOperator LocalFileSystemOperator { get; }

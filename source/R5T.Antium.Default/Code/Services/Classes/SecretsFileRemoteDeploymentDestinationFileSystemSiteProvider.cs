@@ -7,7 +7,10 @@ using R5T.Lombardy;
 
 namespace R5T.Antium.Default
 {
-    public class SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider : IDeploymentDestinationFileSystemSiteProvider
+    /// <summary>
+    /// Provides a remote deployment destination file system site using the <see cref="RemoteDeploymentSecretsSerialization.DirectoryPath"/> value.
+    /// </summary>
+    public class SecretsFileRemoteDeploymentDestinationFileSystemSiteProvider : IDeploymentDestination_FileSystemSiteProvider
     {
         private IRemoteDeploymentSecretsSerializationProvider RemoteDeploymentSecretsSerializationProvider { get; }
         private IRemoteFileSystemOperator RemoteFileSystemOperator { get; }
